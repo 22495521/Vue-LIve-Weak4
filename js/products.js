@@ -59,7 +59,6 @@ const app = Vue.createApp({
             .then((res)=>{
                 this.products = res.data.products;
                 this.pagination = res.data.pagination;
-                console.log(res);
             })
             .catch((error)=>{
                 //失敗傳送回login
@@ -76,7 +75,6 @@ const app = Vue.createApp({
         enterProducts(data){
             //這區是有新增跟編輯
             if(data){
-                console.log(data)
                 this.alertProducts = data
             }
 
