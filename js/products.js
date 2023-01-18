@@ -1,4 +1,4 @@
-import navbar from "./navbar.js";
+import navbar from "../components/pagination.js";
 
 let productsDom = null;
 let delProductModal=null;
@@ -29,7 +29,7 @@ const app = Vue.createApp({
 
         checkAPI(){
              //從cookie取得token
-            var token = document.cookie.replace(/(?:(?:^|.*;\s*)bigtoken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+            const token = document.cookie.replace(/(?:(?:^|.*;\s*)bigtoken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
             //把cookie放進header
             axios.defaults.headers.common['Authorization'] = token;
             //登入驗證
@@ -66,7 +66,8 @@ const app = Vue.createApp({
             })
         },
 
-        openProducts(){
+        openProducts($event){
+            this.alertTitle = 1
             this.alertProducts = {
                 "imagesUrl": [],
             };
@@ -106,8 +107,7 @@ const app = Vue.createApp({
             }
         },
         editData(id){
-            this.alertTitle = 0;
-
+            this.alertTitle =0
             const data = Object.values(this.products);
             data.forEach((i)=>{
                 if(i.id===id){
@@ -173,7 +173,7 @@ app.component('productModal',{
             this.alertProducts.imagesUrl.pop();
         },
     },
-    props:['alertProducts'],
+    props:['alertProducts','alertTitle'],
     template:'#product-template'
 })
 
@@ -183,6 +183,7 @@ app.component('delproduct-template',{
             this.$emit('DeleteData');
         }
     },
+    props:['alertProducts'],
     template:'#delproduct-template'
 })
 

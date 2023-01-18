@@ -130,7 +130,7 @@
         </div>
         <div class="modal-body">
           是否刪除
-          <strong class="text-danger"></strong> 商品(刪除後將無法恢復)。
+          <strong class="text-danger"></strong> {{alertProducts.title}}(刪除後將無法恢復)。
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -148,7 +148,7 @@
     <div id="app">
       <div class="container">
         <div class="text-end mt-4">
-          <button class="btn btn-primary"    @click="openProducts">
+          <button class="btn btn-primary"    @click="openProducts($event)">
             建立新的產品
           </button>
         </div>
@@ -201,10 +201,10 @@
       
       <!-- Modal -->
       <div id="productModal" ref="productModal" class="modal fade" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-          <product-modal :alert-products="alertProducts" @alert-products-data="enterProducts"></product-modal>
+          <product-modal :alert-products="alertProducts" @alert-products-data="enterProducts" :alert-Title="alertTitle"></product-modal>
       </div>
       <div id="delProductModal" ref="delProductModal" class="modal fade" tabindex="-1"aria-labelledby="delProductModalLabel" aria-hidden="true">
-        <delproduct-template @delete-data="DeleteData"></delproduct-template>
+        <delproduct-template @delete-data="DeleteData" :alert-Products="alertProducts"></delproduct-template>
       </div>
       <!-- Modal -->
 
